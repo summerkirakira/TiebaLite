@@ -119,7 +119,7 @@ class PersonalizedFeedFragment : BaseFragment(), PersonalizedFeedAdapter.OnRefre
                     threadBean.threadPersonalizedBean = personalizedBean.threadPersonalized?.get(index)
                 }
                 val newThreadBeans: List<PersonalizedBean.ThreadBean> = personalizedBean.threadList?.filterNot {
-                    (it.abstractBeans?.size!! > 0 && BlockUtil.needBlock(it.abstractBeans[0].text)) || BlockUtil.needBlock(it.author?.nameShow, it.author?.id)
+                    it.abstractBeans == null || (it.abstractBeans.isNotEmpty() && BlockUtil.needBlock(it.abstractBeans[0].text)) || BlockUtil.needBlock(it.author?.nameShow, it.author?.id)
                 }!!
                 val threadBeans: MutableList<PersonalizedBean.ThreadBean> = ArrayList(adapter!!.allData)
                 adapter!!.apply {
